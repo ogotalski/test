@@ -17,9 +17,8 @@ jobs:
           chmod +x gradlew
           ./gradlew testCoverage
 
-      - name: Add coverage to PR
-        id: jacoco
-        uses: ogotalski/test-coverage-report-action@v0.1.1
+      - name: Test coverage report
+        uses: ogotalski/test-coverage-report@v0.1.1
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
           htmlReports: ${{ github.workspace }}/build/reports/jacocoHtml,${{ github.workspace }}/MathUtils/build/reports/jacocoHtml
