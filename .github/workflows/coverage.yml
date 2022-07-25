@@ -15,7 +15,7 @@ jobs:
       - name: Run Coverage
         run: |
           chmod +x gradlew
-          ./gradlew testCoverage
+          ./gradlew test jacocoTestReport
 
       - name: Test coverage report
         uses: ogotalski/test-coverage-report@v0.1.1
