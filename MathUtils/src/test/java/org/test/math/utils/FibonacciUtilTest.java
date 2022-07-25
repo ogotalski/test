@@ -1,4 +1,4 @@
-package org.hatalski.math.utils;
+package org.test.math.utils;
 import org.junit.Assert;
 import org.junit.Test;
 

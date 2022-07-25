@@ -1,4 +1,4 @@
-package org.hatalski.math.utils;
+package org.test.math.utils;
 
 import java.util.concurrent.*;
 
