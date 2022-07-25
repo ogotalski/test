@@ -19,7 +19,7 @@ jobs:
 
       - name: Add coverage to PR
         id: jacoco
-        uses: ogotalski/test-coverage-report-action@v0.1
+        uses: ogotalski/test-coverage-report-action@v0.1.1
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
           htmlReports: ${{ github.workspace }}/build/reports/jacocoHtml,${{ github.workspace }}/MathUtils/build/reports/jacocoHtml
