@@ -9,6 +9,6 @@ class Math {
             return MathUtils().fibonacciCalc(int.toLong())
         if (int < 0)
             return 0L
-        return 1L
+        return -1L
         }
 }
