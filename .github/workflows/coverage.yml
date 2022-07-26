@@ -18,7 +18,7 @@ jobs:
           ./gradlew test jacocoTestReport
 
       - name: Test coverage report
-        uses: ogotalski/test-coverage-report@bb0e7720d9392504a392a0dd147abad2349650a5
+        uses: ogotalski/test-coverage-report@f8b15cf07f601fe983c8eb46535053d993f4b3ec
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
           htmlReports: ${{ github.workspace }}/build/reports/jacocoHtml,${{ github.workspace }}/MathUtils/build/reports/jacocoHtml
