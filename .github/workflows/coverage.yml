@@ -21,6 +21,6 @@ jobs:
         uses: ogotalski/test-coverage-report@28fef1d9470f872a3cfa15d1ef8281ae146bcb9b
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
-          htmlReports: ${{ github.workspace }}/build/reports/jacocoHtml,${{ github.workspace }}/MathUtils/build/reports/jacocoHtml
+          htmlReports: ${{ github.workspace }}/build/jacocoHtml,${{ github.workspace }}/MathUtils/build/jacocoHtml
           token: ${{ secrets.GITHUB_TOKEN }}
           debug: true
