@@ -16,9 +16,12 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew test jacocoTestReport
-
+      - uses: actions/download-artifact@v3
+        with:
+          name: code-coverage-report
+          path: code-coverage-report/
       - name: Test coverage report
-        uses: ogotalski/test-coverage-report@a2fe63c3a9edfc821fd97b2fc8f6e63eb5e6ff10
+        uses: ogotalski/test-coverage-report@v1.1
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
           htmlReports: ${{ github.workspace }}/build/jacocoHtml,${{ github.workspace }}/MathUtils/build/jacocoHtml
