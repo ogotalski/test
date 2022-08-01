@@ -2,7 +2,6 @@ name: Measure coverage
 
 on:
   pull_request:
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,20 +9,29 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
+        id: setup
         with:
           java-version: 1.8
-      - name: Run Coverage
-        run: |
-          chmod +x gradlew
-          ./gradlew test jacocoTestReport
-      - uses: actions/download-artifact@v3
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: add check
+        id: test
+        uses: ogotalski/check-run-action@v1.3
         with:
-          name: code-coverage-report
-          path: code-coverage-report/
+          run: |
+            chmod +x gradlew
+            ls
+            ./gradlew test jacocoTestReport
+          name: Test
       - name: Test coverage report
-        uses: ogotalski/test-coverage-report@v1.1
+        if: ${{steps.test.output.conclusion == 'success'}}
+        uses: ogotalski/test-coverage-report@download_artifact
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
-          htmlReports: ${{ github.workspace }}/build/jacocoHtml,${{ github.workspace }}/MathUtils/build/jacocoHtml
-          token: ${{ secrets.GITHUB_TOKEN }}
+          sourcePaths: ${{ github.workspace }}/src/main/kotlin,${{ github.workspace }}/MathUtils/src/main/java
+          masterPaths: ${{ github.workspace }}/code-coverage-report/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/code-coverage-report/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
+          updateComment: true
           debug: true
+          artifactWorkflow: main.yml
+          artifactName: code-coverage-report
+          downloadPath: code-coverage-report

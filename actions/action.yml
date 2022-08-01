@@ -1,0 +1,21 @@
+name: 'Test'
+description: 'Greet someone'
+runs:
+  using: "composite"
+  steps:
+    - name: Run Coverage
+      shell: bash
+      run: |
+        chmod +x gradlew
+        ./gradlew test jacocoTestReport
+    - name: Test coverage report
+      uses: ogotalski/test-coverage-report@download_artifact
+      with:
+        paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
+        sourcePaths: ${{ github.workspace }}/src/main/kotlin,${{ github.workspace }}/MathUtils/src/main/java
+        masterPaths: ${{ github.workspace }}/code-coverage-report/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/code-coverage-report/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
+        updateComment: true
+        debug: true
+        artifactWorkflow: main.yml
+        artifactName: code-coverage-report
+        downloadPath: code-coverage-report
