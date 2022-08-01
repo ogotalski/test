@@ -21,9 +21,9 @@ jobs:
           name: code-coverage-report
           path: code-coverage-report/
       - name: Test coverage report
-        uses: ogotalski/test-coverage-report@v1.1
+        uses: ogotalski/test-coverage-report@1fc902be2f8ddbaa012b35985c1c304976cb213f
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
-          htmlReports: ${{ github.workspace }}/build/jacocoHtml,${{ github.workspace }}/MathUtils/build/jacocoHtml
+          sourcePaths: ${{ github.workspace }}/src/main/kotlin,${{ github.workspace }}/MathUtils/src/main/java
           token: ${{ secrets.GITHUB_TOKEN }}
           debug: true
