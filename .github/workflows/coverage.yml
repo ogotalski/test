@@ -19,8 +19,9 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: code-coverage-report
-          path: code-coverage-report/
+          path: code-coverage-report
       - name: Test coverage report
+        if: always()
         uses: ogotalski/test-coverage-report@1fc902be2f8ddbaa012b35985c1c304976cb213f
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
