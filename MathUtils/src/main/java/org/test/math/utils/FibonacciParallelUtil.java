@@ -11,8 +11,9 @@ public class FibonacciParallelUtil implements FibonacciUtil {
     public long calc(long number) {
         if (number <= 2) return 0;
         try {
-            return executorService.submit(() -> calc(number - 1)).get() +
+            long result = executorService.submit(() -> calc(number - 1)).get() +
                     executorService.submit(() -> calc(number - 2)).get();
+            return result;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
