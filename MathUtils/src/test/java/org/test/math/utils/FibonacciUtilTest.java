@@ -11,12 +11,12 @@ public class FibonacciUtilTest {
         test(fibonacciUtil);
     }
 
-    @Test
-    public void FibonacciParallelTest()
-    {
-        FibonacciUtil fibonacciUtil= new FibonacciLinearUtil();
-        test(fibonacciUtil);
-    }
+//    @Test
+//    public void FibonacciParallelTest()
+//    {
+//        FibonacciUtil fibonacciUtil= new FibonacciLinearUtil();
+//        test(fibonacciUtil);
+//    }
 //
 //    @Test
 //    public void FibonacciRecurTest()
