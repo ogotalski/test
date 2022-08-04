@@ -34,6 +34,27 @@ jobs:
           name: code-coverage-report
           # Optional, a directory where to extract artifact(s), defaults to the current directory
           path: code-coverage-report
+      - uses: actions/github-script@v4
+        with:
+          github-token: ${{ inputs.github-token }}
+          script: |
+            const date = new Date();
+            const check = await github.checks.create({
+              owner: "${{ steps.vars.outputs.owner }}",
+              repo: "${{ steps.vars.outputs.repo }}",
+              name: "Custom Script",
+              started_at: date.toISOString(),
+              completed_at: date.toISOString(),
+              head_sha: "${{ inputs.sha }}",
+              external_id: "${{ github.run_id }}",
+              status: "completed",
+              conclusion: "success",
+              output: {
+                title: "Some funny title",
+                summary: "Build successful",
+                text: "Image pushed to https://${{ inputs.region }}.console.aws.amazon.com/ecr/repositories/private/${{ inputs.customer-id }}/modix/base/${{ inputs.image }}"
+              }
+            });
       - name: Test coverage report
         if: always()
         uses: ogotalski/test-coverage-report@55830e2af9733b3e97f47b3b2b75ad03efacd674
