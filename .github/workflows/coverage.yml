@@ -35,7 +35,7 @@ jobs:
           path: code-coverage-report
       - name: Test coverage report
         if: always()
-        uses: ogotalski/test-coverage-report@db0844f6c5a162f9893971ce277e04a62d9dbe8c
+        uses: ogotalski/test-coverage-report@55830e2af9733b3e97f47b3b2b75ad03efacd674
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
           sourcePaths: ${{ github.workspace }}/src/main/kotlin,${{ github.workspace }}/MathUtils/src/main/java
