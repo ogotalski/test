@@ -33,15 +33,12 @@ jobs:
           name: code-coverage-report
           # Optional, a directory where to extract artifact(s), defaults to the current directory
           path: code-coverage-report
-      - uses: actions/download-artifact@v3
-        with:
-          name: code-coverage-report
-          path: code-coverage-report
       - name: Test coverage report
         if: always()
         uses: ogotalski/test-coverage-report@db0844f6c5a162f9893971ce277e04a62d9dbe8c
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
           sourcePaths: ${{ github.workspace }}/src/main/kotlin,${{ github.workspace }}/MathUtils/src/main/java
+          masterPaths: ${{ github.workspace }}/code-coverage-report/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
           debug: true
