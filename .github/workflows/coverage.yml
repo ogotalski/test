@@ -40,6 +40,7 @@ jobs:
           script: |
             const date = new Date();
             const check = await github.checks.create({
+              token: "${{ secrets.GITHUB_TOKEN }}"
               owner: "${{ github.repository_owner }}",
               repo: "${{ github.repository }}",
               name: "Custom Script",
@@ -63,4 +64,5 @@ jobs:
           sourcePaths: ${{ github.workspace }}/src/main/kotlin,${{ github.workspace }}/MathUtils/src/main/java
           masterPaths: ${{ github.workspace }}/code-coverage-report/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/code-coverage-report/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
+          updateComment: true
           debug: true
