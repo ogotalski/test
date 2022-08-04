@@ -40,19 +40,19 @@ jobs:
           script: |
             const date = new Date();
             const check = await github.checks.create({
-              owner: "${{ steps.vars.outputs.owner }}",
-              repo: "${{ steps.vars.outputs.repo }}",
+              owner: "${{ github.repository_owner }}",
+              repo: "${{ github.repository }}",
               name: "Custom Script",
               started_at: date.toISOString(),
               completed_at: date.toISOString(),
-              head_sha: "${{ inputs.sha }}",
+              head_sha: "${{ github.sha }}",
               external_id: "${{ github.run_id }}",
               status: "completed",
-              conclusion: "success",
+              conclusion: "${{steps.setup.conclusion}}",
               output: {
                 title: "Some funny title",
                 summary: "Build successful",
-                text: "Image pushed to https://${{ inputs.region }}.console.aws.amazon.com/ecr/repositories/private/${{ inputs.customer-id }}/modix/base/${{ inputs.image }}"
+                text: "Image pushed "
               }
             });
       - name: Test coverage report
