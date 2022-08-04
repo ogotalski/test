@@ -40,7 +40,7 @@ jobs:
           script: |
             const date = new Date();
             const check = await github.checks.create({
-              token: "${{ secrets.GITHUB_TOKEN }}"
+              github-token: "${{ secrets.GITHUB_TOKEN }}"
               owner: "${{ github.repository_owner }}",
               repo: "${{ github.repository }}",
               name: "Custom Script",
