@@ -17,13 +17,13 @@ public class FibonacciUtilTest {
         FibonacciUtil fibonacciUtil= new FibonacciLinearUtil();
         test(fibonacciUtil);
     }
-
-    @Test
-    public void FibonacciRecurTest()
-    {
-        FibonacciUtil fibonacciUtil= new FibonacciRecurUtil();
-        test(fibonacciUtil);
-    }
+//
+//    @Test
+//    public void FibonacciRecurTest()
+//    {
+//        FibonacciUtil fibonacciUtil= new FibonacciRecurUtil();
+//        test(fibonacciUtil);
+//    }
 
     @Test
     public void FibonacciLinearTest()
