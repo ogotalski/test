@@ -16,7 +16,7 @@ jobs:
         run: echo '${{ toJSON(steps) }}'
       - name: add check
         id: test
-        uses: ogotalski/check-run-action@v1.3
+        uses: ogotalski/check-run-action@main
         with:
           run: |
             chmod +x gradlew
@@ -25,7 +25,7 @@ jobs:
           name: Test
       - name: Test coverage report
         if: ${{steps.test.output.conclusion == 'success'}}
-        uses: ogotalski/test-coverage-report@download_artifact
+        uses: ogotalski/test-coverage-report@main
         with:
           paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml,${{ github.workspace }}/MathUtils/build/reports/jacoco/test/jacocoTestReport.xml
           sourcePaths: ${{ github.workspace }}/src/main/kotlin,${{ github.workspace }}/MathUtils/src/main/java
