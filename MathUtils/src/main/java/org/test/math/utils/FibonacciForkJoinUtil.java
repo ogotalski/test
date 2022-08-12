@@ -26,6 +26,7 @@ public class FibonacciForkJoinUtil implements FibonacciUtil {
         @Override
         protected Long compute() {
             if (number <= 2) return 1L;
+
             FibonacciTask fibonacciTask1 = new FibonacciTask(number - 1);
             fibonacciTask1.fork();
             FibonacciTask fibonacciTask2 = new FibonacciTask(number - 2);
